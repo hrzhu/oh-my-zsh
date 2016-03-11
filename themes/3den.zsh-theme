@@ -1,5 +1,6 @@
-PROMPT=$'%{$fg[white]%}$(~/.rvm/bin/rvm-prompt) %{$fg_bold[cyan]%}%~%{$reset_color%}$(git_prompt_info) %{$fg[cyan]%}%D{[%I:%M:%S]}\
-%{$fg_bold[green]%}%n$%{$reset_color%} '
+PROMPT=$'
+%{$fg[yellow]%}python-$(~/.pyenv/bin/pyenv version-name) | $(~/.rvm/bin/rvm-prompt) %{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info)\
+%{$fg_bold[red]%}♥[%n] %{$fg[cyan]%}%D{[%I:%M:%S]}%{$reset_color%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[white]%}("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"
