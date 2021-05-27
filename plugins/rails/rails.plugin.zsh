@@ -1,5 +1,7 @@
 function _rails_command () {
-  if [ -e "bin/rails" ]; then
+  if [ -e "bin/stubs/rails" ]; then
+    bin/stubs/rails $@
+  elif [ -e "bin/rails" ]; then
     bin/rails $@
   elif [ -e "script/rails" ]; then
     ruby script/rails $@
@@ -11,9 +13,11 @@ function _rails_command () {
 }
 
 function _rake_command () {
-  if [ -e "bin/rake" ]; then
+  if [ -e "bin/stubs/rake" ]; then
+    bin/stubs/rake $@
+  elif [ -e "bin/rake" ]; then
     bin/rake $@
-  elif type bundle &> /dev/null && [ -e "Gemfile" ]; then
+  elif type bundle &> /dev/null && ([ -e "Gemfile" ] || [ -e "gems.rb" ]); then
     bundle exec rake $@
   else
     command rake $@
@@ -39,9 +43,11 @@ alias rc='rails console'
 alias rcs='rails console --sandbox'
 alias rd='rails destroy'
 alias rdb='rails dbconsole'
-alias rg='rails generate'
+alias rgen='rails generate'
 alias rgm='rails generate migration'
 alias rp='rails plugin'
+alias rr='rails routes'
+alias rrg='rails routes | grep'
 alias ru='rails runner'
 alias rs='rails server'
 alias rsd='rails server --debugger'
@@ -61,8 +67,6 @@ alias rdmtc='rake db:migrate db:test:clone'
 alias rdsl='rake db:schema:load'
 alias rlc='rake log:clear'
 alias rn='rake notes'
-alias rr='rake routes'
-alias rrg='rake routes | grep'
 alias rt='rake test'
 alias rmd='rake middleware'
 alias rsts='rake stats'
